@@ -1,0 +1,66 @@
+---
+# run on only items staged in git:  pre-commit
+# automatically run on commit:      pre-commit install
+# check all files in repo:          pre-commit run --all-files
+# check all files + manual checks:  pre-commit run --all-files --hook-stage manual
+# update all checks to latest:      pre-commit autoupdate
+# https://github.com/pre-commit/pre-commit-hooks
+repos:
+  - repo: https://github.com/homebysix/pre-commit-macadmin
+    rev: v1.14.1
+    hooks:
+      - id: check-autopkg-recipe-list
+      - id: check-autopkg-recipes
+        args: ["--recipe-prefix=com.github.macadmins.", "--strict", "--"]
+        exclude: ".*.test.recipe.yaml"
+      # - id: forbid-autopkg-overrides
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: check-yaml
+      # check-json doesn't work with json with comments
+      # - id: check-json
+      - id: check-added-large-files
+        args: ["--maxkb=500"]
+      - id: check-ast
+      - id: check-case-conflict
+      - id: check-merge-conflict
+      # - id: check-xml
+      - id: end-of-file-fixer
+        exclude: "\\.templates/\\.partials/.*"
+      # https://www.aleksandrhovhannisyan.com/blog/crlf-vs-lf-normalizing-line-endings-in-git/
+      # - id: mixed-line-ending
+      #   args: ['--fix=no']
+      - id: requirements-txt-fixer
+      - id: trailing-whitespace
+      #  args: [--markdown-linebreak-ext=md]
+      - id: detect-private-key
+      # - id: no-commit-to-branch
+      #   args: [--branch, main]
+  - repo: https://github.com/adrienverge/yamllint.git
+    rev: v1.33.0
+    hooks:
+      - id: yamllint
+        args: [-c=.yamllint.yaml]
+  - repo: https://github.com/python-jsonschema/check-jsonschema
+    rev: 0.27.2
+    hooks:
+      - id: check-jsonschema
+        files: \.recipe\.yaml$
+        args:
+          [
+            "--schemafile",
+            "https://raw.githubusercontent.com/jgstew/jgstew-recipes/main/.AutoPkgRecipeOpinionated.schema.json",
+          ]
+      - id: check-metaschema
+        files: \.schema\.json$
+        args: ["--verbose"]
+      - id: check-github-workflows
+        args: ["--verbose"]
+      - id: check-dependabot
+      - id: check-github-actions
+  # this works with json with comments, but gave me an error
+  # - repo: https://gitlab.com/bmares/check-json5
+  #   rev: v1.0.0
+  #   hooks:
+  #     - id: check-json5

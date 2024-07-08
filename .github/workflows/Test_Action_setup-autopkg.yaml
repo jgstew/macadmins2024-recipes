@@ -1,0 +1,32 @@
+---
+name: Test Action setup-autopkg
+
+on:
+  push:
+    paths:
+      - ".github/workflows/Test_Action_setup-autopkg.yaml"
+      - ".github/actions/setup-autopkg/**"
+  pull_request:
+    paths:
+      - ".github/workflows/Test_Action_setup-autopkg.yaml"
+      - ".github/actions/setup-autopkg/**"
+
+jobs:
+  TestAction_setup-autopkg:
+    strategy:
+      matrix:
+        # https://ncorti.com/blog/howto-github-actions-build-matrix
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    name: Test Action setup-autopkg
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: setup-autopkg local action
+        uses: ./.github/actions/setup-autopkg
+
+      - name: add autopkg repos
+        run: for line in $(cat .autopkg_repos.txt); do python autopkg/Code/autopkg repo-add $line; done
+
+      - name: run recipe autopkg
+        run: python autopkg/Code/autopkg run -vv com.github.jgstew.test.AutoPkgCore

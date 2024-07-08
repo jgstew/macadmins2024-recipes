@@ -1,0 +1,31 @@
+name: "setup-autopkg"
+# This has been moved to: https://github.com/autopkg/setup-autopkg-actions
+description: "Sets up autopkg"
+inputs:
+  name:
+    required: false
+    description: "Name"
+  use-python-version:
+    description: "Which version of python to use"
+    required: true
+    default: "3.10"
+  use-autopkg-branch:
+    description: "Which branch of autopkg repo to use"
+    required: true
+    default: "master"
+  set-powershell-policy:
+    description: "Should this set the windows powershell execution policy?"
+    required: true
+    # only needed on self hosted windows runners, but no harm otherwise:
+    default: "true"
+
+runs:
+  using: "composite"
+  steps:
+    # This has been moved to: https://github.com/autopkg/setup-autopkg-actions
+    - name: test setup-autopkg-actions action
+      uses: autopkg/setup-autopkg-actions@main
+      with:
+        use-python-version: ${{ inputs.use-python-version }}
+        use-autopkg-branch: ${{ inputs.use-autopkg-branch }}
+        set-powershell-policy: ${{ inputs.set-powershell-policy }}

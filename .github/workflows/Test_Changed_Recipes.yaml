@@ -1,0 +1,56 @@
+---
+name: Test Changed Recipes
+
+on:
+  push:
+    paths:
+      - "**.recipe.yaml"
+  pull_request:
+    paths:
+      - "**.recipe.yaml"
+
+jobs:
+  TestChangedRecipes:
+    runs-on: ubuntu-latest
+    name: Test changed-files
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2 # OR "2" -> To retrieve the preceding commit.
+
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v44
+        with:
+          files: "**.recipe.yaml"
+          # Ignore windows only recipes:
+          files_ignore: |
+            AutoPkgRecipe/AutoPkgRelease.nupkg.recipe.yaml
+
+      - name: List all changed files
+        if: steps.changed-files.outputs.any_changed == 'true'
+        run: |
+          for file in ${{ steps.changed-files.outputs.all_changed_and_modified_files }}; do
+            echo "$file" >> TestRecipesAction.txt
+          done
+          cat TestRecipesAction.txt
+
+      - name: setup-autopkg local action
+        if: steps.changed-files.outputs.any_changed == 'true'
+        uses: ./.github/actions/setup-autopkg
+
+      - name: Install repo requirements
+        if: steps.changed-files.outputs.any_changed == 'true'
+        run: pip install --requirement requirements.txt
+
+      - name: Install prereq
+        if: steps.changed-files.outputs.any_changed == 'true'
+        run: sudo apt-get install msitools speech-dispatcher -y
+
+      - name: add autopkg repos
+        if: steps.changed-files.outputs.any_changed == 'true'
+        run: for line in $(cat .autopkg_repos.txt); do python autopkg/Code/autopkg repo-add $line; done
+
+      - name: run recipe autopkg
+        if: steps.changed-files.outputs.any_changed == 'true'
+        run: python autopkg/Code/autopkg run -vv --recipe-list TestRecipesAction.txt
