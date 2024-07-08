@@ -13,7 +13,8 @@ LABEL org.label-schema.name="macadminsrecipes"
 LABEL org.label-schema.description="Run macadmins2024-recipes using AutoPkg on ubuntu:latest"
 LABEL org.label-schema.url="https://github.com/jgstew/macadmins2024-recipes"
 LABEL org.label-schema.vcs-url="https://github.com/jgstew/macadmins2024-recipes"
-LABEL org.label-schema.docker.cmd="docker run --rm jgstewrecipes run -vv com.github.jgstew.test.DateTimeFromString"
+LABEL org.label-schema.docker.cmd="docker run --rm macadmins2024recipes run -vv com.github.jgstew.test.DateTimeFromString"
+# docker run -it --entrypoint bash macadmins2024recipes
 
 # Update everything?
 # RUN apt-get update && apt-get upgrade -y
