@@ -26,6 +26,7 @@ jobs:
         uses: ./.github/actions/setup-autopkg
 
       - name: add autopkg repos
+        shell: bash
         run: for line in $(cat .autopkg_repos.txt); do python autopkg/Code/autopkg repo-add $line; done
 
       - name: run recipe autopkg
