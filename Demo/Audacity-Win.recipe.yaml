@@ -1,0 +1,12 @@
+---
+Description: download audacity
+Identifier: com.github.macadmins.Audacity-Win
+Input:
+  NAME: audacity
+MinimumVersion: "2.3"
+Process:
+  - Processor: GitHubReleasesInfoProvider
+    Arguments:
+      github_repo: audacity/audacity
+      asset_regex: "audacity-win-.+-64bit.exe"
+
