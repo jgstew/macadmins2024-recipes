@@ -1,0 +1,10 @@
+---
+Description: download Firefox for Win
+Identifier: com.github.macadmins.Firefox-Win
+Input:
+  NAME: Firefox
+  os: win64
+  # https://download.mozilla.org/?product=firefox-latest-ssl&os=osx&lang=en-US
+  # https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang=en-US
+MinimumVersion: "2.3"
+ParentRecipe: com.github.macadmins.Firefox-Mac
