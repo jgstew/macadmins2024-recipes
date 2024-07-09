@@ -21,3 +21,4 @@ if those are not an option, instead use:
 - https://github.com/jgstew/jgstew-recipes/blob/main/Audacity/Audacity-Win.download.recipe.yaml
 - https://github.com/Homebrew/homebrew-cask/blob/master/Casks/f/firefox.rb
 - MacAdmins Slack channel, autopkg-for-windows: https://macadmins.slack.com/archives/C02G604QVNK
+- https://github.com/autopkg/NickETH-recipes/tree/master/SharedProcessors 
