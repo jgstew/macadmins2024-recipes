@@ -2,9 +2,18 @@
 
 Repo for demo of autopkg recpies at PSU MacAdmins 2024
 
-Recommend setting up Docker or Docker Desktop
+## Recommend installing:
 
-Related:
+- GIT
+- Docker or Docker Desktop
+- Visual Studio Code
+
+if those are not an option, instead use:
+
+- http://coder2.jgstew.com/
+- Username: demo@jgstew.com
+
+## Related:
 
 - https://github.com/autopkg/autopkg
 - https://github.com/jgstew/jgstew-recipes
