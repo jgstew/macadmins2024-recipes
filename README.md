@@ -6,6 +6,8 @@ Recommend setting up Docker or Docker Desktop
 
 Related:
 
+- https://github.com/autopkg/autopkg
+- https://github.com/jgstew/jgstew-recipes
 - https://github.com/Homebrew/homebrew-cask/blob/master/Casks/a/audacity.rb
 - https://github.com/jgstew/jgstew-recipes/blob/main/Audacity/Audacity-Win.download.recipe.yaml
 - https://github.com/Homebrew/homebrew-cask/blob/master/Casks/f/firefox.rb
