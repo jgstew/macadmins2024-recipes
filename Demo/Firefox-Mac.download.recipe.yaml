@@ -6,7 +6,7 @@ Input:
   # https://download.mozilla.org/?product=firefox-latest-ssl&os=osx&lang=en-US
 MinimumVersion: "2.3"
 Process:
-  - Processor: URLDownloaderPython
+  - Processor: com.github.jgstew.SharedProcessors/URLDownloaderPython
     Arguments:
       filename: Firefox.dmg
       url: https://download.mozilla.org/?product=firefox-latest-ssl&os=osx&lang=en-US
