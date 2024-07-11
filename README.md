@@ -4,6 +4,8 @@ Repo for demo of autopkg recpies at PSU MacAdmins 2024
 
 Presentation: https://docs.google.com/presentation/d/1Gb4a07rTqUDzD0SNLUASsXPunJMA3cOgRuqii_fM6D4/edit
 
+Example Recipes: https://github.com/jgstew/jgstew-recipes/tree/main/Mozilla
+
 ## Recommend installing:
 
 - GIT
