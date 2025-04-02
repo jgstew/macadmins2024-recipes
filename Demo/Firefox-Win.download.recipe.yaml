@@ -9,3 +9,4 @@ Input:
   # https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang=en-US
 MinimumVersion: "2.3"
 ParentRecipe: com.github.macadmins.Firefox-Mac
+# add a comment
